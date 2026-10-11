@@ -1,36 +1,26 @@
-# TP 3 : Associations et Relations JPA / Hibernate
+# TP 3 : Relations JPA & Cascade (Ikram Mellakh)
 
-Projet d'implementation des associations objet-relationnelles complexes avec **JPA 2.2** et **Hibernate ORM 5.6** sur base de donnees **H2 Database**.
-
-Realise par : **Ikram Mellakh**
-
----
-
-## 1. Modeles & Relations ImplÃ©mentÃ©es
-
-- **One-to-Many / Many-to-One** : Relation bidirectionnelle entre Collaborateur et ReservationSalle.
-- **Many-to-One** : Association entre ReservationSalle et SalleConference.
-- **Many-to-Many** : Table de jointure salle_ressource_liaison liant SalleConference et RessourceMateriel.
-
-### Entite Collaborateur
-![Entite Collaborateur](docs/images/01-entite-collaborateur.png)
-
-### Entite SalleConference
-![Entite SalleConference](docs/images/02-entite-salle.png)
+ImplÃ©mentation des associations d'entitÃ©s avec JPA 2.2 :
+- `@OneToMany` et `@ManyToOne` bidirectionnel avec `orphanRemoval = true`
+- `@ManyToMany` avec table de jointure explicite `@JoinTable`
+- Cycle de vie en cascade (`CascadeType.ALL`, `CascadeType.PERSIST`, `CascadeType.MERGE`)
 
 ---
 
-## 2. Trace d'Execution et Validation des Requetes
+## Captures d'Ã‰cran IntelliJ IDEA & Terminal CMD
 
-La console ci-dessous illustre la generation automatique des cles etrangeres par Hibernate et les requetes JOIN FETCH :
+### 1. EntitÃ© SalleConference avec Collections & Jointures (IntelliJ IDEA)
+![EntitÃ© Salle](docs/images/01-intellij-entity-salle.png)
 
-![Resultats dans le Terminal](docs/images/03-execution-cmd.png)
+### 2. EntitÃ© ReservationSalle & ClÃ©s Ã‰trangÃ¨res (IntelliJ IDEA)
+![EntitÃ© RÃ©servation](docs/images/02-intellij-entity-reservation.png)
+
+### 3. RÃ©sultat des Tests et ExÃ©cution (CMD / PowerShell)
+![RÃ©sultat ExÃ©cution CMD](docs/images/03-cmd-test-result.png)
 
 ---
 
-## 3. Lancement
-
-``bash
-mvn clean compile
-mvn exec:java "-Dexec.mainClass=ma.enset.ikram.tp3.App"
-``
+## Lancement
+```bash
+mvn clean compile exec:java -Dexec.mainClass=ma.enset.ikram.tp3.App
+```
